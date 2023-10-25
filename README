@@ -3,9 +3,11 @@ for a given IP address. It uses the IPStack API to do so, and requires a free
 API key to do the work.
 
 To install:
-Load all required Python libraries (primarily the requests library, which is a part
-of basic Python these days):
+Load all required Python libraries :
 pip install -r requirements.txt
+Note that since the project requirements said no third party libraries, I've used some old
+code to implement the request get. This code came from the Internet at some point.
+
 
 This presumes that you have Python 3 (or better) installed on your system.
 
@@ -29,3 +31,8 @@ Exit Code 3: The output will be an error message indicating that the API returne
 Since a caller (or script) can query the exit code, there is no need to output anything but the actual
 data needed, as a Unix pipeline app would do.
 
+Other notes:
+1. The key is stored in an environment variable so that it is secure. In a CI/CD environment, this would
+be placed in a secrets vault on the CI machine.
+2. No checking is done for the validity of the IP address, since the IPStack api already does this. Might
+make a nice feature
