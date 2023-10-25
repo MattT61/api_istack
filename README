@@ -1,0 +1,31 @@
+This little command line tool is used to retrieve the latitude and longitude
+for a given IP address. It uses the IPStack API to do so, and requires a free
+API key to do the work.
+
+To install:
+Load all required Python libraries (primarily the requests library, which is a part
+of basic Python these days):
+pip install -r requirements.txt
+
+This presumes that you have Python 3 (or better) installed on your system.
+
+Notes:
+When you have an API key, you must set it in an environment variable called
+IPSTACK_KEY in either your startup code or the terminal that you want to run the thing
+in. This is to avoid having any secret keys in the code.
+
+Usage:
+fetch_ip <ip-address>
+where ip-address is the address you want to fetch.
+The return from the program is one of the following
+Exit Code 0: The program will output the latitude and longitude as a single
+comma separated line like:
+34.0655517578125,-118.24053955078125
+
+Exit Code 1: The output will be an error message indicating that no parameter was given
+Exit Code 2: The output will be an error message indicating that no API Key was found
+Exit Code 3: The output will be an error message indicating that the API returned an error (most likely a bad IP address).
+
+Since a caller (or script) can query the exit code, there is no need to output anything but the actual
+data needed, as a Unix pipeline app would do.
+
